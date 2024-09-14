@@ -104,7 +104,7 @@ const Home = () => {
               header: () => <span>DUE DATE</span>,
               cell: (info) => {
                 const date = info.getValue();
-                return moment(date).format('DD/MM/YYYY'); // Customize format
+                return moment(date).format('DD/MM/YYYY');
               },
             }),
     columnHelper.accessor('status', {
@@ -140,16 +140,12 @@ const Home = () => {
     
     //  action handlers
     const handleEdit = (rowData : any) => {
-      console.log('Edit', rowData);
-      // Implement edit logic here
       setIsEdit(true);
       setTaskToEdit(rowData);
       setIsOpen(true); 
     };
     
     const handleDelete = (rowData : any) => {
-      console.log('Delete', rowData);
-      // Implement delete logic here
        const tasksFromStorage = localStorage.getItem('tasks')
        const tasksArray : any[] = tasksFromStorage ? JSON.parse(tasksFromStorage) : [];
        const arrayToRemove = tasksArray.filter(task => task.id !== rowData.id )
@@ -158,32 +154,22 @@ const Home = () => {
     };
 
   const tasksFromStorage = localStorage.getItem('tasks');
-
-// Convert the JSON string back to an array of objects
 const tasksArray : any[] = tasksFromStorage ? JSON.parse(tasksFromStorage) : [];
     const [data, setData] = React.useState<Person[]>(() => [...tasksArray])
-  // const rerender = React.useReducer(() => ({}), {})[1]
-  const [sorting, setSorting] = React.useState<SortingState>([])
-   const [isOpen , setIsOpen] = useState(false)
-   const [loading , setLoading] = useState(false)
-   const [formSubmitted, setFormSubmitted] = useState(false);
-
-  
-
-   //  useEffect(()=>{
-  //   _setData(tasksArray)
-  //  },[])
-
-  useEffect(() => {
+    const [sorting, setSorting] = React.useState<SortingState>([])
+    const [isOpen , setIsOpen] = useState(false)
+    const [loading , setLoading] = useState(false)
+    const [formSubmitted, setFormSubmitted] = useState(false);
+ 
+    useEffect(() => {
     if (formSubmitted) {
-      refershPage();   // Refresh the page when form is submitted
-      setFormSubmitted(false); // Reset form submission state
+      refershPage();  
+      setFormSubmitted(false); 
     }
   }, [formSubmitted]);
   
    const refershPage = ()=>{
     setLoading(true);
-    // console.log("loading is true");
     const tasksFromStorage = localStorage.getItem('tasks'); 
     const tasksArray: Person[] = tasksFromStorage ? JSON.parse(tasksFromStorage) : [];
     setData(tasksArray);
@@ -296,8 +282,6 @@ function Filter({
     column,
     table,
   }: {
-    // column: Column<any, any>
-    // table: Table<any>
     column:any
     table:any
   }) {

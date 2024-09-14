@@ -24,13 +24,9 @@ interface MyFormValues {
 }
 
 const Dialogue: React.FC<ModalProps> = ({ isOpen, onClose, refershPage, setFormSubmitted, taskToEdit, isEdit   }) => {
-  // const [date, setDate] = useState<Date | null>(null);
+    if (!isOpen) return null;
   
-  
-  
-  if (!isOpen) return null;
-  
-  const initialValues: MyFormValues = {
+    const initialValues: MyFormValues = {
     id: isEdit? taskToEdit.id : null,
     name: isEdit ? taskToEdit.name : '',
     description: isEdit ? taskToEdit.description : '',
